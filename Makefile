@@ -1,10 +1,15 @@
 JAVA := java
 JAVAC := javac
-SRCS := $(wildcard *.java)
-OPTS :=
+JAVA_OPTS = -cp bin
+JAVAC_OPTS = -d bin -sourcepath src
+
+SRCS := $(wildcard src/*.java)
 
 run: Main.class
-	$(JAVA) Main
+	$(JAVA) $(JAVA_OPTS) Main
 
 Main.class: $(SRCS)
-	$(JAVAC) Main.java 
+	$(JAVAC) $(JAVAC_OPTS) src/Main.java 
+
+clean:
+	rm -rf bin/*.class
