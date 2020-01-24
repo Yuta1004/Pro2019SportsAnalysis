@@ -1,4 +1,4 @@
-package yuge.csvio;
+package csvio;
 
 import java.io.File;
 import java.nio.file.Path;

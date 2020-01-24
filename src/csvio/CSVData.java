@@ -1,4 +1,4 @@
-package yuge.csvio;
+package csvio;
 
 public void CSVData {
 

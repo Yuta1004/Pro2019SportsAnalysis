@@ -1,4 +1,4 @@
-package yuge.test;
+package test;
 
 abstract public class Test {
 

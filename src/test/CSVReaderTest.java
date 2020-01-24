@@ -1,6 +1,6 @@
-package yuge.test;
+package test;
 
-import yuge.csvio.CSVReader;
+import csvio.CSVReader;
 
 public class CSVReaderTest extends Test {
 

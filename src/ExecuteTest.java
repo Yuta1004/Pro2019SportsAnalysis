@@ -1,5 +1,5 @@
-import yuge.test.Test;
-import yuge.test.CSVReaderTest;
+import test.Test;
+import test.CSVReaderTest;
 
 class ExecuteTest {
 
