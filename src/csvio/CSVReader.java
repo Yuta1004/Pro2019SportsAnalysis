@@ -10,6 +10,7 @@ import java.util.List;
 public class CSVReader {
 
     private String filepath;
+    private List<String> rawData;
 
     /**
      * CSVReaderのコンストラクタ
@@ -35,13 +36,26 @@ public class CSVReader {
         }
 
         // ファイル読み取り
-        List<String> rawData = null;
         try {
             rawData = Files.readAllLines(path, StandardCharsets.UTF_8);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("CSVファイルの読み込み中にエラーが発生しました");
             return;
+        }
+    }
+
+    /**
+     * データ読み込みを行う
+     * 引数で指定された配列に値を書き込む
+     *
+     * @param data CSVDataを継承したクラスのインスタンスの配列
+     */
+    public void load(CSVData data[]) {
+        int maxSize = data.length;
+        for(int idx = 1; idx < rawData.size() && idx <= maxSize; ++ idx) {
+            String splittedLine[] = rawData.get(idx).split(",");
+            data[idx-1].setData(splittedLine);
         }
     }
 
