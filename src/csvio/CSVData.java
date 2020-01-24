@@ -1,17 +1,17 @@
 package csvio;
 
-public void CSVData {
+public abstract class CSVData {
 
-    public String contest, name;
-    public double backstroke, braststroke, butterfly, free;
+    protected int size;
 
-    public CSVData(String contest, String name, double backstroke, double braststroke, double butterfly, double free) {
-        this.contest = contest;
-        this.name = name;
-        this.backstroke = backstroke;
-        this.braststroke = braststroke;
-        this.butterfly = butterfly;
-        this.free = free;
+    abstract public void setData(Object ... args);
+
+    public int getSize() {
+        return size;
+    }
+
+    protected boolean checkArgsSize(Object args[], int checkSize) {
+        return args.length != checkSize;
     }
 
 }
