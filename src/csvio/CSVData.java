@@ -7,7 +7,7 @@ public abstract class CSVData {
      *
      * @param args 登録するデータを渡す(可変長引数)
      */
-    abstract public void setData(Object ... args);
+    abstract public void setData(String ... args);
 
     /**
      * 引数サイズをチェックする
@@ -16,7 +16,7 @@ public abstract class CSVData {
      * @param checkSize サイズ
      */
     protected boolean checkArgsSize(Object args[], int size) {
-        return args.length != size;
+        return args.length == size;
     }
 
 }
