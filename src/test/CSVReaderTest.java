@@ -1,7 +1,7 @@
 package test;
 
-import csvio.CSVReader;
-import csvio.CSVData;
+import csvio.reader.CSVReader;
+import csvio.format.CSVData;
 
 public class CSVReaderTest extends Test {
 

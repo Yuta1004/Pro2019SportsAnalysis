@@ -1,4 +1,4 @@
-package csvio;
+package csvio.reader;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+
+import csvio.format.CSVData;
 
 public class CSVReader {
 

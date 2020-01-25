@@ -1,4 +1,4 @@
-import csvio.CSVReader;
+import csvio.reader.CSVReader;
 
 public class Main {
 

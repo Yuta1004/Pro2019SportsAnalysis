@@ -1,4 +1,6 @@
-import csvio.CSVData;
+package csvio.format;
+
+import CSVData;
 
 public class SwimData extends CSVData {
 

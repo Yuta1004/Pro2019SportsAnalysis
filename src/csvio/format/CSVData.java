@@ -1,4 +1,4 @@
-package csvio;
+package csvio.format;
 
 public abstract class CSVData {
 
