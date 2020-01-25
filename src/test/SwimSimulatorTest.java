@@ -9,7 +9,7 @@ public class SwimSimulatorTest extends Test {
     */
     @Override
     public void doTest() {
-        SwimSimulator simulator = new SwimSimulator();
+        SwimSimulator simulator = new SwimSimulator("src/data/swim.csv");
         test("TestConstract", simulator==null, false);
     }
 
