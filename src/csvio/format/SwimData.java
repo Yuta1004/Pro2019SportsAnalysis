@@ -7,6 +7,11 @@ public class SwimData extends CSVData {
     String name;
     public double backstroke, braststroke, butterfly, free, sum; 
 
+    /**
+     * データセット(CSVDataの抽象メソッド)
+     *
+     * @param args データ
+     */
     @Override
     public void setData(String ... args) {
         // 引数長さチェック
