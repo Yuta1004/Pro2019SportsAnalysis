@@ -15,23 +15,21 @@ public class Main {
         SwimData data[] = initData(4);
         CSVReader reader = new CSVReader("src/data/swim.csv");
         reader.load(data);
-       
 
         for(SwimData elem: data) {
             System.out.println(elem.name + " : ");
             System.out.print(elem.backstroke + ", ");
             System.out.print("(" + ((elem.backstroke/elem.sum)*100)+ "%), ");
-            
+
             System.out.print(elem.braststroke + ", ");
             System.out.print("(" + ((elem.braststroke/elem.sum)*100)+ "%), ");
-            
+
             System.out.print(elem.butterfly + ", ");
             System.out.print("(" + ((elem.butterfly/elem.sum)*100)+ "%), ");
-            
+
             System.out.print(elem.free + ", ");
             System.out.print("(" + ((elem.free/elem.sum)*100)+ "%), ");
             System.out.println(elem.sum);
-           
         }
     }
 
