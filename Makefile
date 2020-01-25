@@ -18,4 +18,4 @@ ExecuteTest.class: $(SRCS)
 	$(JAVAC) $(JAVAC_OPTS) src/ExecuteTest.java
 
 clean:
-	rm -rf bin/*.class bin/*/*.class *.args */*.args */*/*.args
+	rm -rf bin/*.class bin/*/*.class *.args */*.args */*/*.args */*/*/*.args
