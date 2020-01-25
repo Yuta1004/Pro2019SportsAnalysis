@@ -12,10 +12,11 @@ test: ExecuteTest.class
 	$(JAVA) $(JAVA_OPTS) ExecuteTest
 
 Main.class: $(filter-out $(SRCS), src/test/*)
-	$(JAVAC) $(JAVAC_OPTS) src/Main.java 
+	$(JAVAC) $(JAVAC_OPTS) src/Main.java
 
 ExecuteTest.class: $(SRCS)
 	$(JAVAC) $(JAVAC_OPTS) src/ExecuteTest.java
 
 clean:
-	rm -rf bin/*.class bin/*/*.class *.args */*.args */*/*.args */*/*/*.args
+	find src -name "*.args" | xargs rm
+	find bin -name "*.class" | xargs rm
