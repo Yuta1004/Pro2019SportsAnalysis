@@ -1,4 +1,6 @@
 import csvio.reader.CSVReader;
+import csvio.format.SwimData;
+import static csvio.util.makeCSVDataArray;
 
 public class Main {
 
@@ -12,7 +14,7 @@ public class Main {
      */
     private static void analysisPart1() {
         // データ読み込み
-        SwimData data[] = initData(4);
+        SwimData data[] = makeCSVDataArray(SwimData.class, 4);
         CSVReader reader = new CSVReader("src/data/swim.csv");
         reader.load(data);
 
@@ -31,18 +33,6 @@ public class Main {
             System.out.print("(" + ((elem.free/elem.sum)*100)+ "%), ");
             System.out.println(elem.sum);
         }
-    }
-
-    /**
-     * SwimData初期化
-     *
-     * @param size サイズ
-     */
-    private static SwimData[] initData(int size) {
-        SwimData[] data = new SwimData[size];
-        for(int idx = 0; idx < size; ++ idx)
-            data[idx] = new SwimData();
-        return data;
     }
 
  }
