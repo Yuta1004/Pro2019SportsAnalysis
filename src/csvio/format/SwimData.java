@@ -1,10 +1,8 @@
 package csvio.format;
 
-import CSVData;
-
 public class SwimData extends CSVData {
 
-    String name;
+    public String name;
     public double backstroke, braststroke, butterfly, free, sum; 
 
     /**
