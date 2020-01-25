@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.ArrayList;
 
 import csvio.format.CSVData;
 
@@ -49,16 +50,23 @@ public class CSVReader {
 
     /**
      * データ読み込みを行う
-     * 引数で指定された配列に値を書き込む
      *
-     * @param data CSVDataを継承したクラスのインスタンスの配列
+     * @param fmtClass csvio.formatで定義されたCSVDataを継承するクラス
+     * @return ArrayList<fmtClass> fmtClassのArrayList
      */
-    public void load(CSVData data[]) {
-        int maxSize = data.length;
-        for(int idx = 1; idx < rawData.size() && idx <= maxSize; ++ idx) {
-            String splittedLine[] = rawData.get(idx).split(",");
-            data[idx-1].setData(splittedLine);
+    public <T extends CSVData> ArrayList<T> load(Class<T> fmtClass) {
+        ArrayList<T> data = new ArrayList<T>();
+        for(int idx = 1; idx < rawData.size(); ++ idx) {
+            try {
+                T elem = fmtClass.getDeclaredConstructor().newInstance();
+                elem.setData( rawData.get(idx).split(",") );
+                data.add(elem);
+            } catch (Exception e) {
+                e.printStackTrace();
+                break;
+            }
         }
+        return data;
     }
 
  }

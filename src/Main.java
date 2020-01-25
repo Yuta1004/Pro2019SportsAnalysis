@@ -1,6 +1,7 @@
 import csvio.reader.CSVReader;
 import csvio.format.SwimData;
-import static csvio.util.makeCSVDataArray;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -14,9 +15,9 @@ public class Main {
      */
     private static void analysisPart1() {
         // データ読み込み
-        SwimData data[] = makeCSVDataArray(SwimData.class, 4);
+        // SwimData data[] = makeCSVDataArray(SwimData.class, 4);
         CSVReader reader = new CSVReader("src/data/swim.csv");
-        reader.load(data);
+        ArrayList<SwimData> data = reader.load(SwimData.class);
 
         for(SwimData elem: data) {
             System.out.println(elem.name + " : ");
