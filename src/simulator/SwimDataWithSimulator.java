@@ -33,8 +33,6 @@ public class SwimDataWithSimulator extends SwimData {
         origTimes[1] = backstroke;
         origTimes[2] = braststroke;
         origTimes[3] = free;
-        for(int idx = 0; idx < 4; ++ idx)
-            maxCalorie += calcCalorie(METs[idx], origTimes[idx]);
     }
 
     /**
