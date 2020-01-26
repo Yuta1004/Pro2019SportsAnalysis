@@ -33,12 +33,24 @@ public class SwimDataWithSimulator extends SwimData {
 
     /**
      * p値セット(各泳法の力の入れ具合)
+     *
+     * @param p1~p4 力の入れ具合(0.1 ~ 2.0)、標準を1として大きいほど力を入れて泳ぐ
      */
     public void setPValue(double p1, double p2, double p3, double p4) {
-        p[0] = p1;
-        p[1] = p2;
-        p[2] = p3;
-        p[3] = p4;
+        p[0] = Math.log10(p1)+1;
+        p[1] = Math.log10(p2)+1;
+        p[2] = Math.log10(p3)+1;
+        p[3] = Math.log10(p4)+1;
+    }
+
+    /**
+     * p値を元に合計タイムを計算して返す
+     */
+    public double getTime() {
+        return p[0] * butterfly +
+               p[1] * backstroke +
+               p[2] * braststroke +
+               p[3] * free;
     }
 
     /**
