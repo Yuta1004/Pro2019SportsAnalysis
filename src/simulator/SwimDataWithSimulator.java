@@ -55,11 +55,18 @@ public class SwimDataWithSimulator extends SwimData {
                p[3] * free;
     }
 
+    /**
+     * p値を元に合計消費カロリーを計算して返す
+     * ただし、消費限界を超えた場合は-1を返す
+     *
+     * @return double 消費カロリー
+     */
     public double getCalorie() {
-        return calcCalorie(BUTTERFLY_METs, p[0]*butterfly) +
-               calcCalorie(BACKSTROKE_METs, p[1]*backstroke) +
-               calcCalorie(BRASTSTROKE_METs, p[2]*braststroke) +
-               calcCalorie(FREE_METs, p[3]*free);
+        double calorie = calcCalorie(BUTTERFLY_METs, p[0]*butterfly) +
+                         calcCalorie(BACKSTROKE_METs, p[1]*backstroke) +
+                         calcCalorie(BRASTSTROKE_METs, p[2]*braststroke) +
+                         calcCalorie(FREE_METs, p[3]*free);
+        return calorie <= maxCalorie ? calorie : -1;
     }
 
     /**
