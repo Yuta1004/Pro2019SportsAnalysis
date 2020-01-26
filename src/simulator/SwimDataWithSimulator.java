@@ -55,6 +55,13 @@ public class SwimDataWithSimulator extends SwimData {
                p[3] * free;
     }
 
+    public double getCalorie() {
+        return calcCalorie(BUTTERFLY_METs, p[0]*butterfly) +
+               calcCalorie(BACKSTROKE_METs, p[1]*backstroke) +
+               calcCalorie(BRASTSTROKE_METs, p[2]*braststroke) +
+               calcCalorie(FREE_METs, p[3]*free);
+    }
+
     /**
      * 消費カロリー計算
      *
