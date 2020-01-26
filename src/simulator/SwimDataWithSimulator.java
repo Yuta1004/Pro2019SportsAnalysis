@@ -37,10 +37,12 @@ public class SwimDataWithSimulator extends SwimData {
      * @param p1~p4 力の入れ具合(0.1 ~ 2.0)、標準を1として大きいほど力を入れて泳ぐ
      */
     public void setPValue(double p1, double p2, double p3, double p4) {
-        p[0] = Math.log10(p1)+1;
-        p[1] = Math.log10(p2)+1;
-        p[2] = Math.log10(p3)+1;
-        p[3] = Math.log10(p4)+1;
+        p[0] = 0.45*Math.log10(p1)+1;
+        p[1] = 0.45*Math.log10(p2)+1;
+        p[2] = 0.45*Math.log10(p3)+1;
+        p[3] = 0.45*Math.log10(p4)+1;
+        for(int i = 0; i < 4; ++ i)
+            System.out.println(p[i]);
     }
 
     /**
@@ -49,10 +51,10 @@ public class SwimDataWithSimulator extends SwimData {
      * @return double タイム
      */
     public double getTime() {
-        return p[0] * butterfly +
-               p[1] * backstroke +
-               p[2] * braststroke +
-               p[3] * free;
+        return (1.0/p[0]) * butterfly +
+               (1.0/p[1]) * backstroke +
+               (1.0/p[2]) * braststroke +
+               (1.0/p[3]) * free;
     }
 
     /**
