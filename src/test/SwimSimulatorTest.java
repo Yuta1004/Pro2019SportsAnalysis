@@ -1,6 +1,7 @@
 package test;
 
-import simulator.SwimSimulator;
+import csvio.reader.CSVReader;
+import simulator.SwimDataWithSimulator;
 
 public class SwimSimulatorTest extends Test {
 
@@ -9,8 +10,9 @@ public class SwimSimulatorTest extends Test {
     */
     @Override
     public void doTest() {
-        SwimSimulator simulator = new SwimSimulator("src/data/swim.csv");
-        test("TestConstract", simulator==null, false);
+        CSVReader reader = new CSVReader("src/data/swim.csv");
+        reader.load(SwimDataWithSimulator.class);
+        test("TestConstract", true, true);
     }
 
 }
