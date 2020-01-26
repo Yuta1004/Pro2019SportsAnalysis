@@ -25,10 +25,10 @@ public class SwimDataWithSimulator extends SwimData {
      */
     public void setData(String ... args) {
         super.setData(args);
-        maxCalorie += calcCalorie(BUTTERFLY_METs, butterfly, weight);
-        maxCalorie += calcCalorie(BACKSTROKE_METs, backstroke, weight);
-        maxCalorie += calcCalorie(BRASTSTROKE_METs, braststroke, weight);
-        maxCalorie += calcCalorie(FREE_METs, free, weight);
+        maxCalorie += calcCalorie(BUTTERFLY_METs, butterfly);
+        maxCalorie += calcCalorie(BACKSTROKE_METs, backstroke);
+        maxCalorie += calcCalorie(BRASTSTROKE_METs, braststroke);
+        maxCalorie += calcCalorie(FREE_METs, free);
     }
 
     /**
@@ -45,6 +45,8 @@ public class SwimDataWithSimulator extends SwimData {
 
     /**
      * p値を元に合計タイムを計算して返す
+     *
+     * @return double タイム
      */
     public double getTime() {
         return p[0] * butterfly +
@@ -60,7 +62,7 @@ public class SwimDataWithSimulator extends SwimData {
      * @param time 運動時間(s)
      * @param weight 体重
      */
-    private double calcCalorie(double mets, double time, double weight) {
+    private double calcCalorie(double mets, double time) {
         return mets * (time/3600.0) * weight * 1.05;
     }
 
