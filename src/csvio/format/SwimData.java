@@ -3,7 +3,7 @@ package csvio.format;
 public class SwimData extends CSVData {
 
     public String name;
-    public double backstroke, braststroke, butterfly, free, sum; 
+    public double weight, backstroke, braststroke, butterfly, free, sum;
 
     /**
      * データセット(CSVDataの抽象メソッド)
@@ -13,17 +13,18 @@ public class SwimData extends CSVData {
     @Override
     public void setData(String ... args) {
         // 引数長さチェック
-        if(!checkArgsSize(args, 5))
+        if(!checkArgsSize(args, 6))
             throw new IllegalArgumentException();
 
         // 選手名
         name = (String)args[0];
 
         // その他データ
-        butterfly = Double.parseDouble(args[1]);
-        backstroke = Double.parseDouble(args[2]);
-        braststroke = Double.parseDouble(args[3]);
-        free = Double.parseDouble(args[4]);
+        weight = Double.parseDouble(args[1]);
+        butterfly = Double.parseDouble(args[2]);
+        backstroke = Double.parseDouble(args[3]);
+        braststroke = Double.parseDouble(args[4]);
+        free = Double.parseDouble(args[5]);
         sum = butterfly + backstroke + braststroke + free;
     }
 
