@@ -14,6 +14,11 @@ public class SwimSimulator {
 
     private ArrayList<SwimData> data;
 
+    /**
+     * SwimSimulatorのコンストラクタ
+     *
+     * @param csvPath CSVファイルのパス
+     */
     public SwimSimulator(String csvPath) {
         CSVReader reader = new CSVReader(csvPath);
         data = reader.load(SwimData.class);
