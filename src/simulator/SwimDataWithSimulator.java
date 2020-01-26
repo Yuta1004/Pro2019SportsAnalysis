@@ -4,10 +4,10 @@ import csvio.format.SwimData;
 
 public class SwimDataWithSimulator extends SwimData {
 
-    private static final double BUTTERFLY_METs = 13.5;
-    private static final double BACKSTROKE_METs = 9.0;
-    private static final double BRASTSTROKE_METs = 12.0;
-    private static final double FREE_METs = 13.0;
+    private static final double BUTTERFLY_METs = 12.5;
+    private static final double BACKSTROKE_METs = 8.0;
+    private static final double BRASTSTROKE_METs = 11.0;
+    private static final double FREE_METs = 12.0;
     private static final double[] METs = {
         BUTTERFLY_METs, BACKSTROKE_METs, BRASTSTROKE_METs, FREE_METs
     };
