@@ -3,7 +3,7 @@ package csvio.format;
 public class SwimData extends CSVData {
 
     public String name;
-    public double weight, backstroke, braststroke, butterfly, free, sum;
+    public double weight, butterfly, backstroke, braststroke, free, sum;
 
     /**
      * データセット(CSVDataの抽象メソッド)

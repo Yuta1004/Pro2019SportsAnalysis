@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class SwimSimulator {
 
     private static final double BUTTERFLY_METs = 13.5;
-    private static final double BRASTSTROKE_METs = 12.0;
     private static final double BACKSTROKE_METs = 9.0;
+    private static final double BRASTSTROKE_METs = 12.0;
     private static final double FREE_METs = 13.0;
 
     private ArrayList<SwimDataWithP> data;
@@ -27,8 +27,8 @@ public class SwimSimulator {
         for(SwimDataWithP elem : data) {
             double maxCalorie = 0.0;
             maxCalorie += calcCalorie(BUTTERFLY_METs, elem.butterfly, elem.weight);
-            maxCalorie += calcCalorie(BRASTSTROKE_METs, elem.braststroke, elem.weight);
             maxCalorie += calcCalorie(BACKSTROKE_METs, elem.backstroke, elem.weight);
+            maxCalorie += calcCalorie(BRASTSTROKE_METs, elem.braststroke, elem.weight);
             maxCalorie += calcCalorie(FREE_METs, elem.free, elem.weight);
             elem.maxCalorie = maxCalorie;
         }
