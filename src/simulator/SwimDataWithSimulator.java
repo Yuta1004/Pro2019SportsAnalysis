@@ -32,6 +32,16 @@ public class SwimDataWithSimulator extends SwimData {
     }
 
     /**
+     * p値セット(各泳法の力の入れ具合)
+     */
+    public void setPValue(double p1, double p2, double p3, double p4) {
+        p[0] = p1;
+        p[1] = p2;
+        p[2] = p3;
+        p[3] = p4;
+    }
+
+    /**
      * 消費カロリー計算
      *
      * @param mets METs
