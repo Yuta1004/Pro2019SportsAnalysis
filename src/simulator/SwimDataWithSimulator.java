@@ -8,9 +8,12 @@ public class SwimDataWithSimulator extends SwimData {
     private static final double BACKSTROKE_METs = 9.0;
     private static final double BRASTSTROKE_METs = 12.0;
     private static final double FREE_METs = 13.0;
+    private static final double[] METs = {
+        BUTTERFLY_METs, BACKSTROKE_METs, BRASTSTROKE_METs, FREE_METs
+    };
 
     private double maxCalorie;
-    private double p[];
+    private double p[], origTimes[];
 
     /**
      * SwimDataWithPのコンストラクタ
@@ -25,10 +28,13 @@ public class SwimDataWithSimulator extends SwimData {
      */
     public void setData(String ... args) {
         super.setData(args);
-        maxCalorie += calcCalorie(BUTTERFLY_METs, butterfly);
-        maxCalorie += calcCalorie(BACKSTROKE_METs, backstroke);
-        maxCalorie += calcCalorie(BRASTSTROKE_METs, braststroke);
-        maxCalorie += calcCalorie(FREE_METs, free);
+        origTimes = new double[4];
+        origTimes[0] = butterfly;
+        origTimes[1] = backstroke;
+        origTimes[2] = braststroke;
+        origTimes[3] = free;
+        for(int idx = 0; idx < 4; ++ idx)
+            maxCalorie += calcCalorie(METs[idx], origTimes[idx]);
     }
 
     /**
@@ -51,10 +57,10 @@ public class SwimDataWithSimulator extends SwimData {
      * @return double タイム
      */
     public double getTime() {
-        return (1.0/p[0]) * butterfly +
-               (1.0/p[1]) * backstroke +
-               (1.0/p[2]) * braststroke +
-               (1.0/p[3]) * free;
+        double time = 0;
+        for(int idx = 0; idx < 4; ++ idx)
+            time += (1.0/p[idx]) * origTimes[idx];
+        return time;
     }
 
     /**
@@ -64,10 +70,9 @@ public class SwimDataWithSimulator extends SwimData {
      * @return double 消費カロリー
      */
     public double getCalorie() {
-        double calorie = calcCalorie(BUTTERFLY_METs, p[0]*butterfly) +
-                         calcCalorie(BACKSTROKE_METs, p[1]*backstroke) +
-                         calcCalorie(BRASTSTROKE_METs, p[2]*braststroke) +
-                         calcCalorie(FREE_METs, p[3]*free);
+        double calorie = 0.0;
+        for(int idx = 0; idx < 4; ++ idx)
+            calorie += calcCalorie(METs[idx], p[idx]*origTimes[idx]);
         return calorie <= maxCalorie ? calorie : -1;
     }
 
