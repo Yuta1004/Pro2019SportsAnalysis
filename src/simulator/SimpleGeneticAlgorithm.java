@@ -29,6 +29,15 @@ public class SimpleGeneticAlgorithm {
     }
 
     /**
+     * 子の評価、交叉、突然変異をまとめて行う
+     *
+     * @return double 最も成績が良い子の評価値
+     */
+    public double goNextGen() {
+    }
+
+
+    /**
      * childrenのp値の初期化
      */
     private void initGen() {
