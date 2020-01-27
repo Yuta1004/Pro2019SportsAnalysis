@@ -32,14 +32,20 @@ public class SimpleGeneticAlgorithm {
      * childrenのp値の初期化
      */
     private void initGen() {
-        for(int idx = 0; idx < children.size(); ++ idx) {
-            Random rand = new Random();
-            double p1 = rand.nextDouble() * 1.9 + 0.1;
-            double p2 = rand.nextDouble() * 1.9 + 0.1;
-            double p3 = rand.nextDouble() * 1.9 + 0.1;
-            double p4 = rand.nextDouble() * 1.9 + 0.1;
-            children.get(idx).setPValue(p1, p2, p3, p4);
-        }
+        for(int idx = 0; idx < children.size(); ++ idx)
+            children.get(idx).setPValue(genP());
     }
 
+    /**
+     * p値生成(ランダム)
+     *
+     * @return double[] p値の配列
+     */
+    private double[] genP() {
+        Random rand = new Random();
+        double p[] = new double[4];
+        for(int idx = 0; idx < 4; ++ idx)
+            p[idx] = rand.nextDouble() * 1.9 + 0.1;
+        return p;
+    }
 }

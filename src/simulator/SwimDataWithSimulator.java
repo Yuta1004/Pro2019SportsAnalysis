@@ -40,13 +40,13 @@ public class SwimDataWithSimulator extends SwimData {
     /**
      * p値セット(各泳法の力の入れ具合)
      *
-     * @param p1~p4 力の入れ具合(0.1 ~ 2.0)、標準を1として大きいほど力を入れて泳ぐ
+     * @param p double型配列
      */
-    public void setPValue(double p1, double p2, double p3, double p4) {
-        p[0] = 0.45*Math.log10(p1)+1;
-        p[1] = 0.45*Math.log10(p2)+1;
-        p[2] = 0.45*Math.log10(p3)+1;
-        p[3] = 0.45*Math.log10(p4)+1;
+    public void setPValue(double p[]) {
+        if(p.length != 4)
+            throw new IllegalArgumentException();
+        for(int idx = 0; idx < 4; ++ idx)
+            this.p[idx] = 0.45*Math.log10(p[idx])+1;
     }
 
     /**
