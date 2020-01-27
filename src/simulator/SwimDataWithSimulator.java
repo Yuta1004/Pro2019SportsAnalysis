@@ -47,8 +47,6 @@ public class SwimDataWithSimulator extends SwimData {
         p[1] = 0.45*Math.log10(p2)+1;
         p[2] = 0.45*Math.log10(p3)+1;
         p[3] = 0.45*Math.log10(p4)+1;
-        for(int i = 0; i < 4; ++ i)
-            System.out.println(p[i]);
     }
 
     /**
