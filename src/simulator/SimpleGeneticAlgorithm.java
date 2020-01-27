@@ -1,7 +1,10 @@
 package simulator;
 
+import util.Pair;
+
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SimpleGeneticAlgorithm {
 
@@ -32,6 +35,8 @@ public class SimpleGeneticAlgorithm {
      * @return double 最も成績が良い子の評価値
      */
     public double goNextGen() {
+        double evalValues[] = eval();
+        select(evalValues, 10);
         return 0.0;
     }
 
@@ -51,13 +56,36 @@ public class SimpleGeneticAlgorithm {
      */
     private double[] eval() {
         double evalValues[] = new double[children.size()];
-        for(int idx = 0; idx < 4; ++ idx) {
+        for(int idx = 0; idx < children.size(); ++ idx) {
             double time = children.get(idx).getTime();
             double cal = children.get(idx).getCalorie();
             evalValues[idx] = cal < 0 ? INF : time;
         }
         return evalValues;
     }
+
+    /**
+     * 子の選択(単純に上位size個)
+     *
+     * @param eval 評価値の配列
+     * @param size 選択数
+     * @return ArrayList<SwimDataWithSimulator> 選択された子のリスト
+     */
+    @SuppressWarnings("unchecked") 
+    private ArrayList<SwimDataWithSimulator> select(double[] evalValues, int size) {
+        // 評価値ソート
+        ArrayList<Pair<Integer, Double>> evalKV = new ArrayList<Pair<Integer, Double>>();
+        for(int idx = 0; idx < evalValues.length; ++ idx)
+            evalKV.add(new Pair<Integer, Double>(idx, evalValues[idx]));
+        Collections.sort(evalKV);
+
+        // 上位n個の子を選択
+        ArrayList<SwimDataWithSimulator> selectedChildren = new ArrayList<SwimDataWithSimulator>();
+        for(int idx = 0; idx < size; ++ idx)
+            selectedChildren.add(children.get(evalKV.get(idx).first));
+        return selectedChildren;
+    }
+ 
 
     /**
      * p値生成(ランダム)
