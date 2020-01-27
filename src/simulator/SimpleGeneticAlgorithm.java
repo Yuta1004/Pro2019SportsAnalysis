@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 public class SimpleGeneticAlgorithm {
 
-    ArrayList<SwimDataWithSimulator> children;
+    private static final double INF = (1 << 30);
+
+    private ArrayList<SwimDataWithSimulator> children;
 
     /**
      * SimpleGeneticAlgorithmのコンストラクタ
@@ -43,6 +45,21 @@ public class SimpleGeneticAlgorithm {
     private void initGen() {
         for(int idx = 0; idx < children.size(); ++ idx)
             children.get(idx).setPValue(genP());
+    }
+
+    /**
+     * 子の評価
+     *
+     * @return double[] 評価値の配列(childrenに対応)
+     */
+    private double[] eval() {
+        double evalValues[] = new double[children.size()];
+        for(int idx = 0; idx < 4; ++ idx) {
+            double time = children.getTime();
+            double cal = children.getCalorie();
+            eval[idx] = cal < 0 ? INF : time;
+        }
+        return eval;
     }
 
     /**
