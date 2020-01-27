@@ -1,5 +1,7 @@
 import csvio.reader.CSVReader;
 import csvio.format.SwimData;
+import simulator.SwimDataWithSimulator;
+import simulator.SimpleGeneticAlgorithm;
 
 import java.util.ArrayList;
 
@@ -7,6 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         analysisPart1();
+        analysisPart2();
     }
 
     /**
@@ -15,7 +18,6 @@ public class Main {
      */
     private static void analysisPart1() {
         // データ読み込み
-        // SwimData data[] = makeCSVDataArray(SwimData.class, 4);
         CSVReader reader = new CSVReader("src/data/swim.csv");
         ArrayList<SwimData> data = reader.load(SwimData.class);
 
@@ -34,6 +36,21 @@ public class Main {
             System.out.print("(" + ((elem.free/elem.sum)*100)+ "%), ");
             System.out.println(elem.sum);
         }
+    }
+
+    /**
+     * 分析2 ~体力分配~
+     * - 担当 : nakagami
+     */
+    private static void analysisPart2() {
+        // データ読み込み
+        CSVReader reader = new CSVReader("src/data/swim.csv");
+        ArrayList<SwimDataWithSimulator> data = reader.load(SwimDataWithSimulator.class);
+
+        // SGA
+        int select = 0;
+        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(0), 100);
+        sga.goNextGen();
     }
 
  }
