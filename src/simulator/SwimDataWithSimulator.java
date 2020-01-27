@@ -13,7 +13,7 @@ public class SwimDataWithSimulator extends SwimData {
     };
 
     private double maxCalorie;
-    private double p[], origTimes[];
+    private double p[], origP[], origTimes[];
 
     /**
      * SwimDataWithPのコンストラクタ
@@ -21,6 +21,7 @@ public class SwimDataWithSimulator extends SwimData {
     public SwimDataWithSimulator() {
         maxCalorie = 0.0;
         p = new double[4];
+        origP = new double[4];
     }
 
     /**
@@ -45,8 +46,19 @@ public class SwimDataWithSimulator extends SwimData {
     public void setPValue(double p[]) {
         if(p.length != 4)
             throw new IllegalArgumentException();
-        for(int idx = 0; idx < 4; ++ idx)
+        for(int idx = 0; idx < 4; ++ idx) {
+            this.origP[idx] = p[idx];
             this.p[idx] = 0.45*Math.log10(p[idx])+1;
+        }
+    }
+
+    /**
+     * p値取得
+     *
+     * @return double[] p値の配列
+     */
+    public double[] getPValue() {
+        return origP;
     }
 
     /**
