@@ -87,6 +87,17 @@ public class SwimDataWithSimulator extends SwimData {
     }
 
     /**
+     * clone(p値は引き継がない)
+     *
+     * @return SwimDataWithSimulaotr
+     */
+    public SwimDataWithSimulator clone() {
+        SwimDataWithSimulator tmp = new SwimDataWithSimulator();
+        tmp.setData(name, weight+"", butterfly+"", backstroke+"", braststroke+"", free+"");
+        return tmp;
+    }
+
+    /**
      * 消費カロリー計算
      *
      * @param mets METs

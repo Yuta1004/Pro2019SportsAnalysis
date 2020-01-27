@@ -19,12 +19,8 @@ public class SimpleGeneticAlgorithm {
     public SimpleGeneticAlgorithm(SwimDataWithSimulator parentG, int size) {
         // childre初期化
         children = new ArrayList<SwimDataWithSimulator>();
-        for(int cnt = 0; cnt < size; ++ cnt) {
-            SwimDataWithSimulator tmp = new SwimDataWithSimulator();
-            tmp.setData(parentG.name, parentG.weight+"", parentG.butterfly+"",
-                        parentG.backstroke+"", parentG.braststroke+"", parentG.free+"");
-            children.add(tmp);
-        }
+        for(int cnt = 0; cnt < size; ++ cnt)
+            children.add((SwimDataWithSimulator)parentG.clone());
 
         // p値初期化
         initGen();
@@ -36,6 +32,7 @@ public class SimpleGeneticAlgorithm {
      * @return double 最も成績が良い子の評価値
      */
     public double goNextGen() {
+        return 0.0;
     }
 
 
@@ -55,11 +52,11 @@ public class SimpleGeneticAlgorithm {
     private double[] eval() {
         double evalValues[] = new double[children.size()];
         for(int idx = 0; idx < 4; ++ idx) {
-            double time = children.getTime();
-            double cal = children.getCalorie();
-            eval[idx] = cal < 0 ? INF : time;
+            double time = children.get(idx).getTime();
+            double cal = children.get(idx).getCalorie();
+            evalValues[idx] = cal < 0 ? INF : time;
         }
-        return eval;
+        return evalValues;
     }
 
     /**
