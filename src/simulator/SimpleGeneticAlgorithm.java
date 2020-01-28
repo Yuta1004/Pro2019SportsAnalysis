@@ -105,13 +105,12 @@ public class SimpleGeneticAlgorithm {
 
         // 子を生成
         ArrayList<SwimDataWithSimulator> genChildren = new ArrayList<SwimDataWithSimulator>();
-        for(int idxA = 0; idxA < parentList.size(); ++ idxA) {
-            for(int idxB = 0; idxB < parentList.size(); ++ idxB) {
-                if(idxA*parentList.size()+idxB >= size)
-                    break;
+        for(int idxA = 0; size > 0 && idxA < parentList.size(); ++ idxA) {
+            for(int idxB = 0; size > 0 && idxB < parentList.size(); ++ idxB) {
                 SwimDataWithSimulator child = parentList.get(0).clone();
                 child.setPValue(genP(parentList.get(idxA), parentList.get(idxB)));
                 genChildren.add(child);
+                -- size;
             }
         }
         return genChildren;
