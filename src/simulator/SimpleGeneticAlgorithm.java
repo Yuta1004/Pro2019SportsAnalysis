@@ -36,8 +36,13 @@ public class SimpleGeneticAlgorithm {
      */
     public double goNextGen() {
         double evalValues[] = eval();
-        select(evalValues, 10);
-        return 0.0;
+        ArrayList<SwimDataWithSimulator> elite = select(evalValues, 10);
+        ArrayList<SwimDataWithSimulator> genChildren = crossover(elite, 90);
+        children.clear();
+        children.addAll(elite);
+        children.addAll(genChildren);
+        mutation(0.05);
+        return elite.get(0).getTime();
     }
 
 
