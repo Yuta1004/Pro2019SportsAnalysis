@@ -48,7 +48,7 @@ public class SwimDataWithSimulator extends SwimData {
             throw new IllegalArgumentException();
         for(int idx = 0; idx < 4; ++ idx) {
             this.origP[idx] = p[idx];
-            this.p[idx] = 0.45*Math.log10(p[idx])+1;
+            this.p[idx] = 0.7*Math.log10(p[idx])+1;
         }
     }
 

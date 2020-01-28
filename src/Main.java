@@ -48,10 +48,10 @@ public class Main {
         ArrayList<SwimDataWithSimulator> data = reader.load(SwimDataWithSimulator.class);
 
         // SGA
-        int select = 0, gen = 100000;
-        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 500);
+        int select = 0, gen = 500;
+        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 1000);
         for(int idx = 0; idx < gen; ++ idx)
-            System.out.println(idx + ": " + sga.goNextGen());
+            System.out.println(idx + "," + sga.goNextGen());
     }
 
  }
