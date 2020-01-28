@@ -85,6 +85,32 @@ public class SimpleGeneticAlgorithm {
             selectedChildren.add(children.get(evalKV.get(idx).first));
         return selectedChildren;
     }
+
+    /**
+     * 交叉を行う
+     * 与えられた親を元に指定された数の子を生成して返す
+     *
+     * @param parentList 親のリスト
+     * @param size 生成数
+     * @return ArrayList<SwimDataWithSimulator> 生成した子のリスト
+     */
+    private ArrayList<SwimDataWithSimulator> crossover(ArrayList<SwimDataWithSimulator> parentList, int size) {
+        // サイズ検証
+        size = size > Math.pow(parentList.size(), 2) ? (int)Math.pow(parentList.size(), 2) : size;
+
+        // 子を生成
+        ArrayList<SwimDataWithSimulator> genChildren = new ArrayList<SwimDataWithSimulator>();
+        for(int idxA = 0; idxA < parentList.size(); ++ idxA) {
+            for(int idxB = 0; idxB < parentList.size(); ++ idxB) {
+                if(idxA*parentList.size()+idxB >= size)
+                    break;
+                SwimDataWithSimulator child = parentList.get(0).clone();
+                child.setPValue(genP(parentList.get(idxA), parentList.get(idxB)));
+                genChildren.add(child);
+            }
+        }
+        return genChildren;
+    } 
  
 
     /**
@@ -97,6 +123,20 @@ public class SimpleGeneticAlgorithm {
         double p[] = new double[4];
         for(int idx = 0; idx < 4; ++ idx)
             p[idx] = rand.nextDouble() * 1.9 + 0.1;
+        return p;
+    }
+
+    /** p値生成(親の情報を元に)
+     *
+     * @return double[] p値の配列
+     */
+    private double[] genP(SwimDataWithSimulator parentA, SwimDataWithSimulator parentB) {
+        Random rand = new Random();
+        double p[] = new double[4];
+        double parentP[][] = { parentA.getPValue(), parentB.getPValue() };
+        for(int idx = 0; idx < 4; ++ idx) {
+            p[idx] = parentP[rand.nextInt(2)][idx]; 
+        }
         return p;
     }
 }
