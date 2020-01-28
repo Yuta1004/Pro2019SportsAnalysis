@@ -2,7 +2,7 @@ package util;
 
 import java.lang.Comparable;
 
-public class Pair<K, V extends Number & Comparable> implements Comparable{
+public class Pair<K, V extends Comparable> implements Comparable{
 
     public K first;
     public V second;
