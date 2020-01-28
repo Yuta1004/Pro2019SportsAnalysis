@@ -41,7 +41,7 @@ public class SimpleGeneticAlgorithm {
         children.clear();
         children.addAll(elite);
         children.addAll(genChildren);
-        mutation(0.05);
+        mutation(0.15);
         return elite.get(0).getTime();
     }
 
@@ -107,6 +107,7 @@ public class SimpleGeneticAlgorithm {
         ArrayList<SwimDataWithSimulator> genChildren = new ArrayList<SwimDataWithSimulator>();
         for(int idxA = 0; size > 0 && idxA < parentList.size(); ++ idxA) {
             for(int idxB = 0; size > 0 && idxB < parentList.size(); ++ idxB) {
+                if(idxA == idxB) continue;
                 SwimDataWithSimulator child = parentList.get(0).clone();
                 child.setPValue(genP(parentList.get(idxA), parentList.get(idxB)));
                 genChildren.add(child);
@@ -122,7 +123,7 @@ public class SimpleGeneticAlgorithm {
     private void mutation(double rate) {
         for(int idx = 0; idx < children.size(); ++ idx) {
             double p[] = children.get(idx).getPValue();
-            children.get(idx).setPValue(p);
+            children.get(idx).setPValue(genP(p, rate));
         }
     } 
  
@@ -146,11 +147,11 @@ public class SimpleGeneticAlgorithm {
      */
     private double[] genP(SwimDataWithSimulator parentA, SwimDataWithSimulator parentB) {
         Random rand = new Random();
+        int wall = rand.nextInt(4);
         double p[] = new double[4];
         double parentP[][] = { parentA.getPValue(), parentB.getPValue() };
-        for(int idx = 0; idx < 4; ++ idx) {
-            p[idx] = parentP[rand.nextInt(2)][idx]; 
-        }
+        for(int idx = 0; idx < 4; ++ idx)
+            p[idx] = parentP[(idx <= wall)?0:1][idx];
         return p;
     }
 
@@ -163,7 +164,7 @@ public class SimpleGeneticAlgorithm {
         Random rand = new Random();
         double p[] = new double[4];
         for(int idx = 0; idx < 4; ++ idx)
-            p[idx] = rand.nextDouble() < rate ? origP[idx] : rand.nextDouble()*1.9+0.1;
+            p[idx] = rand.nextDouble() > rate ? origP[idx] : rand.nextDouble()*1.9+0.1;
         return p;
     }
 }
