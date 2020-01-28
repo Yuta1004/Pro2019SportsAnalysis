@@ -49,7 +49,7 @@ public class Main {
 
         // SGA
         int select = 0;
-        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(0), 100);
+        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 100);
         sga.goNextGen();
     }
 
