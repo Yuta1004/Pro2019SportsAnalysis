@@ -163,7 +163,7 @@ public class SimpleGeneticAlgorithm {
         Random rand = new Random();
         double p[] = new double[4];
         for(int idx = 0; idx < 4; ++ idx)
-            p[idx] = rand.nextDouble() > rate ? origP[idx] : rand.nextDouble()*1.9+0.1;
+            p[idx] = rand.nextDouble() < rate ? origP[idx] : rand.nextDouble()*1.9+0.1;
         return p;
     }
 }
