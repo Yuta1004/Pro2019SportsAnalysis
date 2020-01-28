@@ -10,6 +10,7 @@ public class SimpleGeneticAlgorithm {
 
     private static final double INF = (1 << 30);
 
+    private int parentSize, childrenSize;
     private ArrayList<SwimDataWithSimulator> children;
 
     /**
@@ -20,6 +21,10 @@ public class SimpleGeneticAlgorithm {
      * @param size 子の数
      */
     public SimpleGeneticAlgorithm(SwimDataWithSimulator parentG, int size) {
+        // サイズ設定
+        parentSize = (int)Math.sqrt(size);
+        childrenSize = size - parentSize;
+
         // childre初期化
         children = new ArrayList<SwimDataWithSimulator>();
         for(int cnt = 0; cnt < size; ++ cnt)
@@ -36,8 +41,8 @@ public class SimpleGeneticAlgorithm {
      */
     public double goNextGen() {
         double evalValues[] = eval();
-        ArrayList<SwimDataWithSimulator> elite = select(evalValues, 10);
-        ArrayList<SwimDataWithSimulator> genChildren = crossover(elite, 90);
+        ArrayList<SwimDataWithSimulator> elite = select(evalValues, parentSize);
+        ArrayList<SwimDataWithSimulator> genChildren = crossover(elite, childrenSize);
         children.clear();
         children.addAll(elite);
         children.addAll(genChildren);
