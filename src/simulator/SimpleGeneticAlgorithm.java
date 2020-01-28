@@ -110,6 +110,16 @@ public class SimpleGeneticAlgorithm {
             }
         }
         return genChildren;
+    }
+
+    /**
+     * 突然変異
+     */
+    private void mutation(double rate) {
+        for(int idx = 0; idx < children.size(); ++ idx) {
+            double p[] = children.get(idx).getPValue();
+            children.get(idx).setPValue(p);
+        }
     } 
  
 
@@ -137,6 +147,19 @@ public class SimpleGeneticAlgorithm {
         for(int idx = 0; idx < 4; ++ idx) {
             p[idx] = parentP[rand.nextInt(2)][idx]; 
         }
+        return p;
+    }
+
+    /**
+     * p値生成(一部をランダムに変更)
+     *
+     * @return double[] p値の配列
+     */
+    private double[] genP(double origP[], double rate) {
+        Random rand = new Random();
+        double p[] = new double[4];
+        for(int idx = 0; idx < 4; ++ idx)
+            p[idx] = rand.nextDouble() > rate ? origP[idx] : rand.nextDouble()*1.9+0.1;
         return p;
     }
 }
