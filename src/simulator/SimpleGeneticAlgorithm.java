@@ -110,19 +110,13 @@ public class SimpleGeneticAlgorithm {
      * @return ArrayList<SwimDataWithSimulator> 生成した子のリスト
      */
     private ArrayList<SwimDataWithSimulator> crossover(ArrayList<SwimDataWithSimulator> parentList, int size) {
-        // サイズ検証
-        size = size > Math.pow(parentList.size(), 2) ? (int)Math.pow(parentList.size(), 2) : size;
-
-        // 子を生成
         ArrayList<SwimDataWithSimulator> genChildren = new ArrayList<SwimDataWithSimulator>();
-        for(int idxA = 0; size > 0 && idxA < parentList.size(); ++ idxA) {
-            for(int idxB = 0; size > 0 && idxB < parentList.size(); ++ idxB) {
-                if(idxA == idxB) continue;
-                SwimDataWithSimulator child = parentList.get(0).clone();
-                child.setPValue(genP(parentList.get(idxA), parentList.get(idxB)));
-                genChildren.add(child);
-                -- size;
-            }
+        for(; size > 0; -- size) {
+            int pa = rand.nextInt(parentList.size());
+            int pb = rand.nextInt(parentList.size());
+            SwimDataWithSimulator child = parentList.get(0).clone();
+            child.setPValue(genP(parentList.get(pa), parentList.get(pb)));
+            genChildren.add(child);
         }
         return genChildren;
     }
