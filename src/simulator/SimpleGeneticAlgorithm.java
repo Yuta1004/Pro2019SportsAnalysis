@@ -164,14 +164,16 @@ public class SimpleGeneticAlgorithm {
     }
 
     /**
-     * p値生成(一部をランダムに変更)
+     * p値生成(一部をランダムに増減)
      *
      * @return double[] p値の配列
      */
     private double[] genP(double origP[], double rate) {
         double p[] = new double[4];
-        for(int idx = 0; idx < 4; ++ idx)
-            p[idx] = rand.nextDouble() > rate ? origP[idx] : rand.nextDouble()*1.9+0.1;
+        for(int idx = 0; idx < 4; ++ idx) {
+            p[idx] = origP[idx];
+            p[idx] += rand.nextDouble() > rate ? 0.0 : rand.nextDouble()*1.0-0.5;
+        }
         return p;
     }
 }
