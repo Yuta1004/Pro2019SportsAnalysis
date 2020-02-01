@@ -1,14 +1,9 @@
 package simulator;
 
-import util.Pair;
-
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class SimpleGeneticAlgorithm {
-
-    private static final double INF = (1 << 30);
 
     private Random rand;
     private int parentSize, childrenSize;
@@ -74,30 +69,23 @@ public class SimpleGeneticAlgorithm {
         for(int idx = 0; idx < children.size(); ++ idx) {
             double time = children.get(idx).getTime();
             double cal = children.get(idx).getCalorie();
-            evalValues[idx] = cal < 0 ? INF : time;
+            evalValues[idx] = cal < 0 ? -1 : time;
         }
         return evalValues;
     }
 
     /**
-     * 子の選択(単純に上位size個)
+     * 子の選択(ルーレット選択)
      *
      * @param eval 評価値の配列
      * @param size 選択数
      * @return ArrayList<SwimDataWithSimulator> 選択された子のリスト
      */
-    @SuppressWarnings("unchecked")
     private ArrayList<SwimDataWithSimulator> select(double[] evalValues, int size) {
-        // 評価値ソート
-        ArrayList<Pair<Integer, Double>> evalKV = new ArrayList<Pair<Integer, Double>>();
-        for(int idx = 0; idx < evalValues.length; ++ idx)
-            evalKV.add(new Pair<Integer, Double>(idx, evalValues[idx]));
-        Collections.sort(evalKV);
-
-        // 上位n個の子を選択
+        RouletteSelect selector = new RouletteSelect(rand.nextInt(), evalValues);
         ArrayList<SwimDataWithSimulator> selectedChildren = new ArrayList<SwimDataWithSimulator>();
-        for(int idx = 0; idx < size; ++ idx)
-            selectedChildren.add(children.get(evalKV.get(idx).first));
+        for(int cnt = 0; cnt < size; ++ cnt)
+            selectedChildren.add(children.get(selector.nextVal()));
         return selectedChildren;
     }
 
