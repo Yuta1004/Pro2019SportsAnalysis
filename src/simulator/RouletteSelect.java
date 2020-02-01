@@ -15,23 +15,30 @@ public class RouletteSelect {
     /**
      * RouletteSelectのコンストラクタ
      */
-    @SuppressWarnings("unchecked")
-    public RouletteSelect(int seed, double[] argDataArray) {
-        // rand初期化
+    public RouletteSelect(int seed, double[] array) {
         rand = new Random(seed);
+        normalization(array);
+    }
 
+    /**
+     * データの正規化を行う
+     *
+     * @param data double要素の配列
+     */
+    @SuppressWarnings("unchecked")
+    private void normalization(double array[]) {
         // 全データの合計
-        for(int idx = 0; idx < argDataArray.length; ++ idx) {
-            if(argDataArray[idx] >= 0)
-                sum += argDataArray[idx];
+        for(int idx = 0; idx < array.length; ++ idx) {
+            if(array[idx] >= 0)
+                sum += array[idx];
         }
 
         // data初期化
         data = new ArrayList<Pair<Integer, Double>>();
-        for(int idx = 0; idx < argDataArray.length; ++ idx) {
-            if(argDataArray[idx] >= 0) {
+        for(int idx = 0; idx < array.length; ++ idx) {
+            if(array[idx] >= 0) {
                 data.add(
-                    new Pair<Integer, Double>(idx, argDataArray[idx] / sum)
+                    new Pair<Integer, Double>(idx, array[idx] / sum)
                 );
             }
         }
