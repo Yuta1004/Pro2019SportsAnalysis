@@ -9,6 +9,7 @@ import java.util.Collections;
 public class RouletteSelect {
 
     private Random rand;
+    private double selectTable[];
     private ArrayList<Pair<Integer, Double>> data;
 
     /**
@@ -17,6 +18,7 @@ public class RouletteSelect {
     public RouletteSelect(int seed, double[] array) {
         rand = new Random(seed);
         normalization(array);
+        initSelectTable();
     }
 
     /**
@@ -50,6 +52,24 @@ public class RouletteSelect {
         for(Pair<Integer, Double> elem : data) {
             val -= elem.second;
             elem.second = val;
+        }
+    }
+
+    /**
+     * 選択テーブルを初期化する
+     */
+    private void initSelectTable() {
+        // テーブル初期化
+        selectTable = new double[1000];
+
+        // 値セット
+        int dataIdx = -1, prop = 1000;
+        for(int idx = 999; idx >= 0; -- idx) {
+            if(prop > idx) {
+                ++ dataIdx;
+                prop = (int)(data.get(dataIdx).second*1000.0);
+            }
+            selectTable[idx] = data.get(dataIdx).first;
         }
     }
 
