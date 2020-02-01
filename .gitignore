@@ -1,6 +1,12 @@
+# file
 *.class
-.DS_Store
-bin/
+*.csv
+**/*.args
+
+# file (dotfile)
 .classpath
 .project
-**/*.args
+.DS_Store
+
+# dir
+bin/
