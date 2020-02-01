@@ -65,12 +65,21 @@ public class SimpleGeneticAlgorithm {
      * @return double[] 評価値の配列(childrenに対応)
      */
     private double[] eval() {
+        // 全個体のタイムを計測
+        double maxVal = 0.0;
         double evalValues[] = new double[children.size()];
         for(int idx = 0; idx < children.size(); ++ idx) {
             double time = children.get(idx).getTime();
             double cal = children.get(idx).getCalorie();
             evalValues[idx] = cal < 0 ? -1 : time;
+            maxVal = Math.max(evalValues[idx], maxVal);
         }
+
+        // タイムを評価値に変換(短いものほど評価値を高く)
+        for(int idx = 0; idx < children.size(); ++ idx)
+            if(evalValues[idx] >= 0)
+                evalValues[idx] = (maxVal - evalValues[idx]);
+
         return evalValues;
     }
 
