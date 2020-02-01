@@ -48,10 +48,30 @@ public class Main {
         ArrayList<SwimDataWithSimulator> data = reader.load(SwimDataWithSimulator.class);
 
         // SGA
-        int select = 0, gen = 500;
+        int select = 0, gen = 1000;
         SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 1000, 1204);
-        for(int idx = 0; idx < gen; ++ idx)
-            System.out.println(idx + "," + sga.goNextGen());
+        for(int cnt = 1; cnt <= gen; ++ cnt) {
+            if(cnt == 1 || cnt % 50 == 0)
+                printResult(cnt, sga.goNextGen());
+        }
+    }
+
+    /**
+     * SGAの途中経過をCSV形式で出力する
+     *
+     * @param gen 世代
+     * @param data SwimDataWithSimulator
+     */
+    private static void printResult(int gen, SwimDataWithSimulator data) {
+        // 世代, タイム(評価値)
+        System.out.print(gen + ",");
+        System.out.print(data.getTime() + ",");
+
+        // p値
+        double p[] = data.getPValue();
+        for(int idx = 0; idx < p.length; ++ idx)
+            System.out.print(p[idx] + ",");
+        System.out.println();
     }
 
  }

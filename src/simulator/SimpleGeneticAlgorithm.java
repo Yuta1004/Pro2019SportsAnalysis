@@ -42,9 +42,9 @@ public class SimpleGeneticAlgorithm {
     /**
      * 子の評価、交叉、突然変異をまとめて行う
      *
-     * @return double 最も成績が良い子の評価値
+     * @return SwimDataWithSimulator 最も成績が良い子の評価値
      */
-    public double goNextGen() {
+    public SwimDataWithSimulator goNextGen() {
         double evalValues[] = eval();
         ArrayList<SwimDataWithSimulator> elite = select(evalValues, parentSize);
         ArrayList<SwimDataWithSimulator> genChildren = crossover(elite, childrenSize);
@@ -52,7 +52,7 @@ public class SimpleGeneticAlgorithm {
         children.addAll(elite);
         children.addAll(genChildren);
         mutation(0.15);
-        return elite.get(0).getTime();
+        return elite.get(0);
     }
 
 
