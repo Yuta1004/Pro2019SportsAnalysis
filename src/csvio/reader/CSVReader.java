@@ -1,6 +1,5 @@
 package csvio.reader;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -12,7 +11,6 @@ import csvio.format.CSVData;
 
 public class CSVReader {
 
-    private String filepath;
     private List<String> rawData;
 
     /**
@@ -21,7 +19,6 @@ public class CSVReader {
      * @param filepath CSVファイルのパス
      */
     public CSVReader(String filepath) {
-        this.filepath = filepath;
         loadFile(filepath);
 	}
 

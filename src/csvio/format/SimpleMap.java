@@ -1,7 +1,5 @@
 package csvio.format;
 
-import java.text.NumberFormat;
-
 public class SimpleMap extends CSVData {
 
     public String name;
