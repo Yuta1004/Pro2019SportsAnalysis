@@ -3,6 +3,7 @@ package simulator;
 import util.Pair;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class RouletteSelect {
 
@@ -12,6 +13,7 @@ public class RouletteSelect {
     /**
      * RouletteSelectのコンストラクタ
      */
+    @SuppressWarnings("unchecked")
     public RouletteSelect(double[] argDataArray) {
         // 全データの合計
         for(int idx = 0; idx < argDataArray.length; ++ idx) {
@@ -20,6 +22,7 @@ public class RouletteSelect {
         }
 
         // data初期化
+        data = new ArrayList<Pair<Integer, Double>>();
         for(int idx = 0; idx < argDataArray.length; ++ idx) {
             if(argDataArray[idx] >= 0) {
                 data.add(
@@ -27,6 +30,7 @@ public class RouletteSelect {
                 );
             }
         }
+        Collections.sort(data);
     }
 
 }
