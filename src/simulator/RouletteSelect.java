@@ -31,6 +31,14 @@ public class RouletteSelect {
             }
         }
         Collections.sort(data);
+        Collections.reverse(data);
+
+        // 0 ~ 1.0の範囲で正規化
+        double val = 1.0;
+        for(Pair<Integer, Double> elem : data) {
+            val -= elem.second;
+            elem.second = val;
+        }
     }
 
 }
