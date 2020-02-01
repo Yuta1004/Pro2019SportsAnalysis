@@ -140,7 +140,7 @@ public class SimpleGeneticAlgorithm {
     private double[] genP() {
         double p[] = new double[4];
         for(int idx = 0; idx < 4; ++ idx)
-            p[idx] = rand.nextDouble() * 1.9 + 0.1;
+            p[idx] = rand.nextDouble() * 1.7 + 0.3;
         return p;
     }
 
