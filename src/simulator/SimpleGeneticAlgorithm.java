@@ -10,6 +10,7 @@ public class SimpleGeneticAlgorithm {
 
     private static final double INF = (1 << 30);
 
+    private Random rand;
     private int parentSize, childrenSize;
     private ArrayList<SwimDataWithSimulator> children;
 
@@ -19,13 +20,17 @@ public class SimpleGeneticAlgorithm {
      *
      * @param parentG 親
      * @param size 子の数
+     * @param seed 乱数のシード
      */
-    public SimpleGeneticAlgorithm(SwimDataWithSimulator parentG, int size) {
+    public SimpleGeneticAlgorithm(SwimDataWithSimulator parentG, int size, int seed) {
+        // Random初期化
+        rand = new Random(seed);
+
         // サイズ設定
         parentSize = (int)Math.sqrt(size);
         childrenSize = size - parentSize;
 
-        // childre初期化
+        // children初期化
         children = new ArrayList<SwimDataWithSimulator>();
         for(int cnt = 0; cnt < size; ++ cnt)
             children.add((SwimDataWithSimulator)parentG.clone());
@@ -81,7 +86,7 @@ public class SimpleGeneticAlgorithm {
      * @param size 選択数
      * @return ArrayList<SwimDataWithSimulator> 選択された子のリスト
      */
-    @SuppressWarnings("unchecked") 
+    @SuppressWarnings("unchecked")
     private ArrayList<SwimDataWithSimulator> select(double[] evalValues, int size) {
         // 評価値ソート
         ArrayList<Pair<Integer, Double>> evalKV = new ArrayList<Pair<Integer, Double>>();
@@ -130,8 +135,8 @@ public class SimpleGeneticAlgorithm {
             double p[] = children.get(idx).getPValue();
             children.get(idx).setPValue(genP(p, rate));
         }
-    } 
- 
+    }
+
 
     /**
      * p値生成(ランダム)
@@ -139,7 +144,6 @@ public class SimpleGeneticAlgorithm {
      * @return double[] p値の配列
      */
     private double[] genP() {
-        Random rand = new Random();
         double p[] = new double[4];
         for(int idx = 0; idx < 4; ++ idx)
             p[idx] = rand.nextDouble() * 1.9 + 0.1;
@@ -151,7 +155,6 @@ public class SimpleGeneticAlgorithm {
      * @return double[] p値の配列
      */
     private double[] genP(SwimDataWithSimulator parentA, SwimDataWithSimulator parentB) {
-        Random rand = new Random();
         int wall = rand.nextInt(4);
         double p[] = new double[4];
         double parentP[][] = { parentA.getPValue(), parentB.getPValue() };
@@ -166,7 +169,6 @@ public class SimpleGeneticAlgorithm {
      * @return double[] p値の配列
      */
     private double[] genP(double origP[], double rate) {
-        Random rand = new Random();
         double p[] = new double[4];
         for(int idx = 0; idx < 4; ++ idx)
             p[idx] = rand.nextDouble() > rate ? origP[idx] : rand.nextDouble()*1.9+0.1;
