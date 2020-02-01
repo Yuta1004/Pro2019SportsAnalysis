@@ -51,7 +51,7 @@ public class SimpleGeneticAlgorithm {
         children.clear();
         children.addAll(elite);
         children.addAll(genChildren);
-        mutation(0.15);
+        mutation(0.05);
         return elite.get(0);
     }
 
