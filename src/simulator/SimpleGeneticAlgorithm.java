@@ -144,16 +144,15 @@ public class SimpleGeneticAlgorithm {
         return p;
     }
 
-    /** p値生成(親の情報を元に)
+    /** p値生成(親の情報を元に一様交叉)
      *
      * @return double[] p値の配列
      */
     private double[] genP(SwimDataWithSimulator parentA, SwimDataWithSimulator parentB) {
-        int wall = rand.nextInt(4);
         double p[] = new double[4];
         double parentP[][] = { parentA.getPValue(), parentB.getPValue() };
         for(int idx = 0; idx < 4; ++ idx)
-            p[idx] = parentP[(idx <= wall)?0:1][idx];
+            p[idx] = parentP[(rand.nextDouble()<0.5)?0:1][idx];
         return p;
     }
 
