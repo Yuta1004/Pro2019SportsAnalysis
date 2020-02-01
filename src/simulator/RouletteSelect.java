@@ -2,11 +2,13 @@ package simulator;
 
 import util.Pair;
 
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class RouletteSelect {
 
+    private Random rand;
     private double sum;
     private ArrayList<Pair<Integer, Double>> data;
 
@@ -14,7 +16,10 @@ public class RouletteSelect {
      * RouletteSelectのコンストラクタ
      */
     @SuppressWarnings("unchecked")
-    public RouletteSelect(double[] argDataArray) {
+    public RouletteSelect(int seed, double[] argDataArray) {
+        // rand初期化
+        rand = new Random(seed);
+
         // 全データの合計
         for(int idx = 0; idx < argDataArray.length; ++ idx) {
             if(argDataArray[idx] >= 0)
