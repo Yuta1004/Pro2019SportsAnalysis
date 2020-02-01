@@ -3,6 +3,7 @@ import csvio.format.SwimData;
 import simulator.SwimDataWithSimulator;
 import simulator.SimpleGeneticAlgorithm;
 
+import java.util.Random;
 import java.util.ArrayList;
 
 public class Main {
@@ -47,11 +48,17 @@ public class Main {
         CSVReader reader = new CSVReader("src/data/swim.csv");
         ArrayList<SwimDataWithSimulator> data = reader.load(SwimDataWithSimulator.class);
 
+        // seed
+        Random rand = new Random();
+        int seed = rand.nextInt();
+        // seed = 1204;
+        System.out.println("Seed: " + seed);
+
         // SGA
-        int select = 0, gen = 1000;
-        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 1000, 1204);
+        int select = 0, gen = 100;
+        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 5, seed);
         for(int cnt = 1; cnt <= gen; ++ cnt) {
-            if(cnt == 1 || cnt % 50 == 0)
+            if(cnt == 1 || cnt % 1 == 0)
                 printResult(cnt, sga.goNextGen());
         }
     }
