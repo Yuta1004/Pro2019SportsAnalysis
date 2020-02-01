@@ -55,11 +55,12 @@ public class Main {
         System.out.println("Seed: " + seed);
 
         // SGA
-        int select = 0, gen = 100;
-        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 5, seed);
+        int select = 0, gen = 10000;
+        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 30, seed);
         for(int cnt = 1; cnt <= gen; ++ cnt) {
-            if(cnt == 1 || cnt % 1 == 0)
-                printResult(cnt, sga.goNextGen());
+            SwimDataWithSimulator sd = sga.goNextGen();
+            if(cnt == 1 || cnt % 50 == 0)
+                printResult(cnt, sd);
         }
     }
 
