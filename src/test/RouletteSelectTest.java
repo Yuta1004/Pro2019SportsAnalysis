@@ -9,8 +9,15 @@ public class RouletteSelectTest extends Test {
      */
     @Override
     public void doTest() {
-        double numbers[] = {1, 2, 5, 6, 8, 9, 4, 1, 1, 0};
-        RouletteSelect selector = new RouletteSelect(1204,numbers);
+        double numbers[] = {1, 2, 3, 4, 5, 4, 3, 2, 1};
+        RouletteSelect selector = new RouletteSelect(1204, numbers);
+
+        int cnt[] = new int[numbers.length];
+        for(int idx = 0; idx < 100; ++ idx)
+            ++ cnt[selector.nextVal()];
+
+        for(int idx = 0; idx < numbers.length; ++ idx)
+            System.out.println(idx + ": " + cnt[idx]);
     }
 
 }
