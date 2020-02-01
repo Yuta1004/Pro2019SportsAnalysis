@@ -40,13 +40,13 @@ public class SimpleGeneticAlgorithm {
      * @return SwimDataWithSimulator 最も成績が良い子の評価値
      */
     public SwimDataWithSimulator goNextGen() {
+        mutation(0.05);
         double evalValues[] = eval();
         ArrayList<SwimDataWithSimulator> elite = select(evalValues, parentSize);
         ArrayList<SwimDataWithSimulator> genChildren = crossover(elite, childrenSize);
         children.clear();
         children.addAll(elite);
         children.addAll(genChildren);
-        mutation(0.05);
         return elite.get(0);
     }
 
