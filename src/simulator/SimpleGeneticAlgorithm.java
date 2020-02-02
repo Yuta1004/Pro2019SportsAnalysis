@@ -7,6 +7,7 @@ public class SimpleGeneticAlgorithm {
 
     private Random rand;
     private int parentSize, childrenSize;
+    private double mutationRate;
     private ArrayList<SwimDataWithSimulator> children;
 
     /**
@@ -15,11 +16,13 @@ public class SimpleGeneticAlgorithm {
      *
      * @param parentG 親
      * @param size 子の数
+     * @param mutationRate 突然変異率
      * @param seed 乱数のシード
      */
-    public SimpleGeneticAlgorithm(SwimDataWithSimulator parentG, int size, int seed) {
-        // Random初期化
+    public SimpleGeneticAlgorithm(SwimDataWithSimulator parentG, int size, double mutationRate, int seed) {
+        // メンバ初期化
         rand = new Random(seed);
+        this.mutationRate = mutationRate;
 
         // サイズ設定
         parentSize = (int)Math.sqrt(size);
@@ -40,7 +43,7 @@ public class SimpleGeneticAlgorithm {
      * @return SwimDataWithSimulator 最も成績が良い子の評価値
      */
     public SwimDataWithSimulator goNextGen() {
-        mutation(0.05);
+        mutation(mutationRate);
         double evalValues[] = eval();
         ArrayList<SwimDataWithSimulator> elite = select(evalValues, parentSize);
         ArrayList<SwimDataWithSimulator> genChildren = crossover(elite, childrenSize);

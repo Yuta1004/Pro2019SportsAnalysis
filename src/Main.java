@@ -56,7 +56,7 @@ public class Main {
 
         // SGA
         int select = 0, gen = 10000;
-        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 20, seed);
+        SimpleGeneticAlgorithm sga = new SimpleGeneticAlgorithm(data.get(select), 20, 0.05, seed);
         for(int cnt = 1; cnt <= gen; ++ cnt) {
             SwimDataWithSimulator sd = sga.goNextGen();
             if(cnt == 1 || cnt % 10 == 0)
